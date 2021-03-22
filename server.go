@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/nsukmana-dev/restapi/config"
+	"github.com/nsukmana-dev/restapi/middleware"
 	"github.com/nsukmana-dev/restapi/routes"
 	"github.com/subosito/gotenv"
 )
@@ -19,11 +20,20 @@ func main() {
 		v1.GET("/auth/:provider/", routes.RedirectHandler)
 		v1.GET("/auth/:provider/callback/", routes.CallbackHandler)
 
-		articles := v1.Group("/article")
+		// testing token
+		// v1.GET("/check", middleware.IsAuth(), routes.CheckToken)
+
+		v1.GET("/profile", middleware.IsAuth(), routes.GetProfile)
+
+		v1.GET("/article/:slug", routes.GetArticle)
+
+		articles := v1.Group("/articles")
 		{
 			articles.GET("/", routes.GetHome)
-			articles.GET("/:slug", routes.GetArticle)
-			articles.POST("/", routes.PostArticle)
+			articles.GET("/tag/:tag", routes.GetArticleByTag)
+			articles.POST("/", middleware.IsAuth(), routes.PostArticle)
+			articles.PUT("/update/:id", middleware.IsAuth(), routes.UpdateArticle)
+			articles.DELETE("/delete/:id", middleware.IsAdmin(), routes.DeleteArticle)
 		}
 	}
 

@@ -1,14 +1,21 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/danilopolani/gocialite/structs"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/nsukmana-dev/restapi/config"
 	"github.com/nsukmana-dev/restapi/models"
 )
+
+func CheckToken(c *gin.Context) {
+	c.JSON(200, gin.H{"msg": "success login"})
+}
 
 // func main() {
 // 	router := gin.Default()
@@ -108,17 +115,18 @@ func CallbackHandler(c *gin.Context) {
 	provider := c.Param("provider")
 
 	// Handle callback and check for errors
-	user, token, err := config.Gocial.Handle(state, code)
+	user, _, err := config.Gocial.Handle(state, code)
 	if err != nil {
 		c.Writer.Write([]byte("Error: " + err.Error()))
 		return
 	}
 
 	var newUser = getOrRegisterUser(provider, user)
+	var jwtToken = createToken(&newUser)
 
 	c.JSON(200, gin.H{
 		"data":    newUser,
-		"token":   token,
+		"token":   jwtToken,
 		"message": "Berhasil login",
 	})
 }
@@ -144,4 +152,21 @@ func getOrRegisterUser(provider string, user *structs.User) models.User {
 		return userData
 	}
 
+}
+
+func createToken(user *models.User) string {
+	jwtToken := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"user_id":   user.ID,
+		"user_role": user.Role,
+		"exp":       time.Now().AddDate(0, 0, 7).Unix(),
+		"iat":       time.Now().Unix(),
+	})
+
+	tokenString, err := jwtToken.SignedString([]byte(os.Getenv("JWT_SECRET")))
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return tokenString
 }

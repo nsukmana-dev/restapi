@@ -11,5 +11,5 @@ type User struct {
 	SocialId string
 	Provider string
 	Avatar   string
-	Rool     bool `gorm:"default:0"`
+	Role     bool `gorm:"default:0"`
 }
