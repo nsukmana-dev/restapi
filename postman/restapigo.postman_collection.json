@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "96bdb6d7-854d-4973-809b-b632d547a4a0",
+		"name": "restapigo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tag",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/articles/tag/golang",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"articles",
+						"tag",
+						"golang"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Slug",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/articles/article-kelima",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"articles",
+						"article-kelima"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTY5ODk4MTIsImlhdCI6MTYxNjM4NTAxMiwidXNlcl9pZCI6MiwidXNlcl9yb2xlIjpmYWxzZX0.YnH-bLe2ML2D_pO4oNu_bfdly0J-r68vUIQiYg3KtFE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "article kelima",
+							"type": "text"
+						},
+						{
+							"key": "desc",
+							"value": "ini isi article kelima",
+							"type": "text"
+						},
+						{
+							"key": "tag",
+							"value": "hore",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/articles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTY5ODY4NDMsImlhdCI6MTYxNjM4MjA0MywidXNlcl9pZCI6MSwidXNlcl9yb2xlIjpmYWxzZX0.cx-_j6oQT4DPQbfCGPzsD4n2WWDzeT6i1VuH2jvgKbw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/articles",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTY5OTMyNTgsImlhdCI6MTYxNjM4ODQ1OCwidXNlcl9pZCI6MSwidXNlcl9yb2xlIjpmYWxzZX0.vp1znJU2ARnZ5lCocU0V2kdtitzRWnEdEuyGCywQ_n8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "article kelima update",
+							"type": "text"
+						},
+						{
+							"key": "desc",
+							"value": "ini isi article kelima update",
+							"type": "text"
+						},
+						{
+							"key": "tag",
+							"value": "hore, update",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/articles/update/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"articles",
+						"update",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTY5OTk1MTMsImlhdCI6MTYxNjM5NDcxMywidXNlcl9pZCI6MSwidXNlcl9yb2xlIjp0cnVlfQ.8COU6zYmv-Fcox4obz2-imJbnj-YgOwwzmwGpILAZXI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/articles/delete/9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"articles",
+						"delete",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
